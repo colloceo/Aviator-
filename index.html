@@ -1,168 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Aviator</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="asset/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: #222;
-            color: #fff;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            padding-top: 20px;
-        }
-        .header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 2px solid #444;
-        }
-        .header svg {
-            width: 40px;
-            height: 40px;
-        }
-        .header .title {
-            font-size: 24px;
-            margin-left: 10px;
-        }
-        #game {
-            background-color: #333;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            margin-bottom: 20px;
-            height: 200px;
-        }
-        #plane {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: left 0.1s linear;
-        }
-        #plane.crash {
-            animation: crash-animation 1s forwards;
-        }
-        @keyframes crash-animation {
-            0% { top: 50%; transform: translateY(-50%) rotate(0); }
-            100% { top: 90%; transform: translateY(0) rotate(90deg); }
-        }
-        .bet-input {
-            background-color: #444;
-            border: none;
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        .btn-custom {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .btn-start {
-            background-color: #28a745;
-            border: none;
-        }
-        .btn-stop {
-            background-color: #dc3545;
-            border: none;
-        }
-        .status {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviator</title>
+  <link rel="stylesheet" href="asset/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    header {
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    #game {
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .input-group {
+      margin-bottom: 20px;
+    }
+    #play, #takeWinnings {
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-airplane-engines-fill" viewBox="0 0 16 16">
-                <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.347 4.347 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.432.11-.979.322-1.401C7.542 1.159 7.787 1 8 1c.213 0 .458.158.678.599C8.889 2.02 9 2.569 9 3v4a.5.5 0 0 0 .276.447l5.448 2.724a.5.5 0 0 1 .276.447v.792l-5.418-.903a.5.5 0 0 0-.575.41l-.5 3a.5.5 0 0 0 .14.437l.646.646H6.707l.647-.646a.5.5 0 0 0 .14-.436l-.5-3a.5.5 0 0 0-.576-.411L1 11.41v-.792a.5.5 0 0 1 .276-.447l5.448-2.724A.5.5 0 0 0 7 7V3Z"/>
+  <header>
+    <div class="container-fluid">
+      <nav class="navbar navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-airplane-engines-fill" viewBox="0 0 16 16">
+              <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.347 4.347 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0Z"/>
             </svg>
-            <div class="title">Aviator</div>
-        </header>
-
-        <main>
-            <div id="game" class="shadow p-4 mb-5 bg-body rounded text-center">
-                <img id="plane" src="plane.png" alt="plane" width="40">
-                <span id="crashPoint" class="text-secondary d-block mt-2"></span>
-            </div>
-
-            <input type="text" id="bet" class="bet-input" placeholder="Enter your bet">
-            <button onclick="startGame()" id="play" class="btn btn-custom btn-start">Start Game</button>
-            <button onclick="takeWinnings()" class="btn btn-custom btn-stop">Take Winnings</button>
-
-            <div class="status">
-                <span id="winnings" class="text-success"></span>
-                <span id="losing" class="text-danger"></span>
-            </div>
-        </main>
+            <span class="ms-2">Aviator</span>
+          </a>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <script src="asset/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script>
-        let gameInterval;
-        let count;
-        let crashPoint;
+  <main>
+    <div class="container">
+      <div id="game" class="rounded">
+        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-airplane-engines" viewBox="0 0 16 16">
+          <path d="M8 0c-.787 0-1.292.592-1.572 1.151A4.347 4.347 0 0 0 6 3v3.691l-2 1V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.191l-1.17.585A1.5 1.5 0 0 0 0 10.618V12a.5.5 0 0 0 .582.493l1.631-.272.313.937a.5.5 0 0 0 .948 0l.405-1.214 2.21-.369.375 2.253-1.318 1.318A.5.5 0 0 0 5.5 16h5a.5.5 0 0 0 .354-.854l-1.318-1.318.375-2.253 2.21.369.405 1.214a.5.5 0 0 0 .948 0l.313-.937 1.63.272A.5.5 0 0 0 16 12v-1.382a1.5 1.5 0 0 0-.83-1.342L14 8.691V7.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v.191l-2-1V3c0-.568-.14-1.271-.428-1.849C9.292.591 8.787 0 8 0ZM7 3c0-.432.11-.979.322-1.401C7.542 1.159 7.787 1 8 1c.213 0 .458.158.678.599C8.889 2.02 9 2.569 9 3v4a.5.5 0 0 0 .276.447l5.448 2.724a.5.5 0 0 1 .276.447v.792l-5.418-.903a.5.5 0 0 0-.575.41l-.5 3a.5.5 0 0 0 .14.437l.646.646H6.707l.647-.646a.5.5 0 0 0 .14-.436l-.5-3a.5.5 0 0 0-.576-.411
+</path>
+</svg>
+<span id="crashPoint" class="text-secondary"></span>
+</div>
 
-        function startGame() {
-            clearInterval(gameInterval);
-            crashPoint = (Math.random() * 5 + 1).toFixed(2); // Random crash point between 1 and 6
-            movePlane();
-        }
+<div class="input-group mb-3">
+  <input type="text" id="bet" class="form-control" placeholder="Enter your bet">
+  <button class="btn btn-outline-secondary" type="button" id="play">Start Game</button>
+  <button class="btn btn-secondary" type="button" id="takeWinnings">Take Winnings</button>
+</div>
 
-        function movePlane() {
-            const plane = document.getElementById('plane');
-            const crashPointDisplay = document.getElementById('crashPoint');
-            const winningsDisplay = document.getElementById('winnings');
-            const losingDisplay = document.getElementById('losing');
+<div class="alert alert-success" role="alert" id="winnings"></div>
+<div class="alert alert-danger" role="alert" id="losing"></div>
+</div>
+</main>
 
-            plane.style.left = '0%';
-            plane.classList.remove('crash');
-            count = 0;
-            winningsDisplay.innerText = '';
-            losingDisplay.innerText = '';
-
-            gameInterval = setInterval(() => {
-                count += 0.1;
-                plane.style.left = (count * 10) + '%';
-                crashPointDisplay.innerText = count.toFixed(1) + 'x';
-
-                if (count >= crashPoint) {
-                    clearInterval(gameInterval);
-                    plane.classList.add('crash');
-                    losingDisplay.innerText = 'You crashed!';
-                }
-            }, 100);
-        }
-
-        function takeWinnings() {
-            clearInterval(gameInterval);
-            const crashPointDisplay = document.getElementById('crashPoint');
-            const winningsDisplay = document.getElementById('winnings');
-            const plane = document.getElementById('plane');
-            const bet = parseFloat(document.getElementById('bet').value);
-
-            if (!isNaN(bet) && crashPointDisplay.innerText !== '' && !plane.classList.contains('crash')) {
-                const multiplier = parseFloat(crashPointDisplay.innerText);
-                const winnings = bet * multiplier;
-                winnings
-winningsDisplay.innerText = `You won: $${winnings.toFixed(2)}`;
-            }
-        }
-    </script>
+<script src="asset/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
